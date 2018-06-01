@@ -1,0 +1,30 @@
+var ioc = {
+
+    $setup_SyncDataToRedisSetupListener : {
+        type : "com.hansight.atom.common.redis.listener.SyncDataToRedisSetupListener",
+        fields : {
+            priority : 1
+        }
+    },
+    $setup_ClientProcessListener : {
+        type : "com.hansight.atom.common.elasticsearch.factory.ClientFactoryListener",
+        fields : {
+            priority : 1,
+            clusterName : {java:"$conf.get('es.cluster.name')"},
+            transportSniff : {java:"$conf.get('es.transport.sniff')"},
+            transportPingTimeout : {java:"$conf.get('es.transport.ping_timeout')"},
+            transportAddress : {java:"$conf.get('es.transport.address')"},
+            indexCapacity : {java:"$conf.get('es.index.capacity')"},
+            deleteCapacity : {java:"$conf.get('es.delete.capacity')"},
+            updateCapacity : {java:"$conf.get('es.update.capacity')"},
+            readClientCount : {java:"$conf.get('es.read.client.count')"},
+            writeClientCount : {java:"$conf.get('es.write.client.count')"},
+            readWriteClientCount : {java:"$conf.get('es.read_write.client.count')"}
+        }
+    },$setup_DataSyncSetupListener : {
+        type : "com.hansight.atom.common.datasync.listener.DataSyncSetupListener",
+        fields : {
+            priority : 1
+        }
+    }
+};
